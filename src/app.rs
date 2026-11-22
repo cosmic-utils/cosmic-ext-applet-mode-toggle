@@ -8,7 +8,7 @@ use cosmic::iced::time::{self, Duration, Instant};
 use cosmic::iced::widget::{stack, svg};
 use cosmic::iced::{Animation, Event, Length, Subscription, event, mouse};
 use cosmic::prelude::*;
-use cosmic::{theme, widget};
+use cosmic::theme;
 
 pub struct AppModel {
     core: cosmic::Core,
@@ -54,24 +54,25 @@ impl cosmic::Application for AppModel {
     fn view(&self) -> Element<'_, Self::Message> {
         let moon_opacity = self.icon_transition.interpolate(0.0, 1.0, Instant::now());
         let (width, height) = self.core.applet.suggested_size(true);
-        let icon = |name: &'static str, opacity| {
-            widget::icon(
-                widget::icon::from_name(name)
-                    .symbolic(true)
-                    .size(width)
-                    .into(),
-            )
-            .width(Length::Fixed(f32::from(width)))
-            .height(Length::Fixed(f32::from(height)))
-            .class(theme::Svg::Custom(Rc::new(|theme| svg::Style {
-                color: Some(theme.cosmic().background(theme.transparent).on.into()),
-            })))
-            .opacity(opacity)
-            .into()
+        let icon = |bytes: &'static [u8], opacity| {
+            svg::Svg::new(svg::Handle::from_memory(bytes))
+                .width(Length::Fixed(f32::from(width)))
+                .height(Length::Fixed(f32::from(height)))
+                .class(theme::Svg::Custom(Rc::new(|theme| svg::Style {
+                    color: Some(theme.cosmic().background(theme.transparent).on.into()),
+                })))
+                .opacity(opacity)
+                .into()
         };
         let icons = stack([
-            icon("weather-clear-symbolic", 1.0 - moon_opacity),
-            icon("weather-clear-night-symbolic", moon_opacity),
+            icon(
+                include_bytes!("../resources/sun-symbolic.svg"),
+                1.0 - moon_opacity,
+            ),
+            icon(
+                include_bytes!("../resources/moon-symbolic.svg"),
+                moon_opacity,
+            ),
         ]);
 
         self.core
