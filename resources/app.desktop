@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=Mode Toggle
+Comment=A simple COSMIC applet to switch between dark and light mode.
+Type=Application
+Icon=dev.edfloreshz.ModeToggle
+Exec=cosmic-ext-applet-mode-toggle %F
+Terminal=false
+StartupNotify=true
+Categories=COSMIC
+Keywords=COSMIC
+NoDisplay=true
+X-CosmicApplet=true
+MimeType=

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="day" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0" stop-color="#ffe19a"/>
+      <stop offset="1" stop-color="#f6ab4a"/>
+    </linearGradient>
+    <linearGradient id="night" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0" stop-color="#454d8e"/>
+      <stop offset="1" stop-color="#242847"/>
+    </linearGradient>
+  </defs>
+
+  <path d="M64 12a51 51 0 0 0 0 102Z" fill="url(#day)"/>
+  <path d="M64 12a51 51 0 0 1 0 102Z" fill="url(#night)"/>
+
+  <g fill="#613513" stroke="#613513" stroke-width="4" stroke-linecap="round">
+    <circle cx="39" cy="63" r="8" stroke="none"/>
+    <path d="M39 46v4 M39 76v4 M22 63h4 M52 63h4 M27 51l3 3 M48 72l3 3 M27 75l3-3 M48 54l3-3" fill="none"/>
+  </g>
+  <path d="M92 48a16 16 0 1 0 12 23A15 15 0 0 1 92 48Z" fill="#f4ebff"/>
+</svg>
