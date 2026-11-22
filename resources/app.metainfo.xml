@@ -1,27 +1,20 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
   <id>dev.edfloreshz.ModeToggle</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-only</project_license>
   <name>Mode Toggle</name>
-  <summary
-    >A simple COSMIC applet to switch between dark and light mode.</summary>
-  <icon type="remote" width="64" height="64" scale="1">
-    https://github.com/cosmic-utils/cosmic-ext-applet-mode-toggle/raw/main/resources/icons/hicolor/scalable/apps/icon.svg
-  </icon>
-  <url
-        type="vcs-browser"
-    >https://github.com/cosmic-utils/cosmic-ext-applet-mode-toggle</url>
+  <summary>Switch between light and dark mode from the COSMIC panel</summary>
+  <description>
+    <p>Mode Toggle adds a button to your panel or dock that switches the system appearance between light and dark mode. The sun and moon show the active mode, and hovering over the button previews the mode a click will activate.</p>
+  </description>
+  <url type="homepage">https://github.com/cosmic-utils/cosmic-ext-applet-mode-toggle</url>
+  <url type="vcs-browser">https://github.com/cosmic-utils/cosmic-ext-applet-mode-toggle</url>
   <launchable type="desktop-id">dev.edfloreshz.ModeToggle.desktop</launchable>
   <provides>
     <id>com.system76.CosmicApplet</id>
-    <binaries>
-      <binary>cosmic-ext-applet-mode-toggle</binary>
-    </binaries>
+    <binary>cosmic-ext-applet-mode-toggle</binary>
   </provides>
-  <requires>
-    <display_length compare="ge">360</display_length>
-  </requires>
   <supports>
     <control>keyboard</control>
     <control>pointing</control>

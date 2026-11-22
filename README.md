@@ -1,6 +1,6 @@
 # Mode Toggle
 
-A simple COSMIC applet to switch between dark and light mode.
+Switch between light and dark mode from the COSMIC panel.
 
 ## Installation
 
