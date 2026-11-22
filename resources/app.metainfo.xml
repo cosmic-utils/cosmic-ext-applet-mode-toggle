@@ -6,7 +6,7 @@
   <name>Mode Toggle</name>
   <summary>Switch between light and dark mode from the COSMIC panel</summary>
   <description>
-    <p>Mode Toggle adds a button to your panel or dock that switches the system appearance between light and dark mode. The sun and moon show the active mode, and hovering over the button previews the mode a click will activate.</p>
+    <p>Mode Toggle adds a button to your panel or dock that switches the system appearance between light and dark mode. The sun and moon show the active mode.</p>
   </description>
   <url type="homepage">https://github.com/cosmic-utils/cosmic-ext-applet-mode-toggle</url>
   <url type="vcs-browser">https://github.com/cosmic-utils/cosmic-ext-applet-mode-toggle</url>

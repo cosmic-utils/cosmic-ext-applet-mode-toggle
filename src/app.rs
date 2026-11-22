@@ -6,20 +6,18 @@ use cosmic::cosmic_config::ConfigSet;
 use cosmic::cosmic_theme::ThemeMode;
 use cosmic::iced::time::{self, Duration, Instant};
 use cosmic::iced::widget::{stack, svg};
-use cosmic::iced::{Animation, Event, Length, Subscription, event, mouse};
+use cosmic::iced::{Animation, Length, Subscription};
 use cosmic::prelude::*;
 use cosmic::theme;
 
 pub struct AppModel {
     core: cosmic::Core,
-    hovered: bool,
     icon_transition: Animation<bool>,
 }
 
 #[derive(Debug, Clone)]
 pub enum Message {
     ToggleMode,
-    HoverChanged(bool),
     AnimationTick,
 }
 
@@ -44,7 +42,6 @@ impl cosmic::Application for AppModel {
         (
             Self {
                 core,
-                hovered: false,
                 icon_transition,
             },
             Task::none(),
@@ -83,31 +80,15 @@ impl cosmic::Application for AppModel {
     }
 
     fn subscription(&self) -> Subscription<Self::Message> {
-        // The button occupies the entire applet surface.
-        let hover = event::listen_with(|event, _, _| match event {
-            Event::Mouse(mouse::Event::CursorEntered) => Some(Message::HoverChanged(true)),
-            Event::Mouse(mouse::Event::CursorLeft) => Some(Message::HoverChanged(false)),
-            _ => None,
-        });
         if self.icon_transition.is_animating(Instant::now()) {
-            Subscription::batch([
-                hover,
-                time::every(Duration::from_millis(16)).map(|_| Message::AnimationTick),
-            ])
+            time::every(Duration::from_millis(16)).map(|_| Message::AnimationTick)
         } else {
-            hover
+            Subscription::none()
         }
     }
 
     fn update(&mut self, message: Self::Message) -> Task<cosmic::Action<Self::Message>> {
         match message {
-            Message::HoverChanged(hovered) => {
-                self.hovered = hovered;
-                self.icon_transition.go_mut(
-                    self.core.system_theme_mode().is_dark ^ hovered,
-                    Instant::now(),
-                );
-            }
             Message::AnimationTick => {}
             Message::ToggleMode => {
                 if let Err(error) = toggle_mode() {
@@ -123,8 +104,7 @@ impl cosmic::Application for AppModel {
         _: &[&'static str],
         mode: &ThemeMode,
     ) -> Task<cosmic::Action<Message>> {
-        self.icon_transition
-            .go_mut(mode.is_dark ^ self.hovered, Instant::now());
+        self.icon_transition.go_mut(mode.is_dark, Instant::now());
         Task::none()
     }
 
